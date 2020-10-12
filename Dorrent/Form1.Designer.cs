@@ -1,6 +1,6 @@
 ﻿namespace Dorrent
 {
-    partial class Form1
+    partial class Form_login
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -58,55 +58,59 @@
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(58, 10);
+            this.tb_id.Location = new System.Drawing.Point(60, 10);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(100, 21);
             this.tb_id.TabIndex = 2;
             // 
             // tb_pw
             // 
-            this.tb_pw.Location = new System.Drawing.Point(58, 40);
+            this.tb_pw.Location = new System.Drawing.Point(60, 40);
             this.tb_pw.Name = "tb_pw";
             this.tb_pw.Size = new System.Drawing.Size(100, 21);
             this.tb_pw.TabIndex = 3;
             // 
             // bt_login
             // 
-            this.bt_login.Location = new System.Drawing.Point(15, 67);
+            this.bt_login.Location = new System.Drawing.Point(15, 70);
             this.bt_login.Name = "bt_login";
             this.bt_login.Size = new System.Drawing.Size(75, 23);
             this.bt_login.TabIndex = 4;
             this.bt_login.Text = "Log in";
             this.bt_login.UseVisualStyleBackColor = true;
+            this.bt_login.Click += new System.EventHandler(this.bt_login_Click);
             // 
             // bt_join
             // 
-            this.bt_join.Location = new System.Drawing.Point(96, 67);
+            this.bt_join.Location = new System.Drawing.Point(96, 70);
             this.bt_join.Name = "bt_join";
             this.bt_join.Size = new System.Drawing.Size(75, 23);
             this.bt_join.TabIndex = 5;
             this.bt_join.Text = "Join";
             this.bt_join.UseVisualStyleBackColor = true;
+            this.bt_join.Click += new System.EventHandler(this.bt_join_Click);
             // 
             // bt_find
             // 
-            this.bt_find.Location = new System.Drawing.Point(177, 67);
+            this.bt_find.Location = new System.Drawing.Point(177, 70);
             this.bt_find.Name = "bt_find";
             this.bt_find.Size = new System.Drawing.Size(75, 23);
             this.bt_find.TabIndex = 6;
             this.bt_find.Text = "Find";
             this.bt_find.UseVisualStyleBackColor = true;
+            this.bt_find.Click += new System.EventHandler(this.bt_find_Click);
             // 
             // bt_cancel
             // 
-            this.bt_cancel.Location = new System.Drawing.Point(258, 67);
+            this.bt_cancel.Location = new System.Drawing.Point(258, 70);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(75, 23);
             this.bt_cancel.TabIndex = 7;
             this.bt_cancel.Text = "Cancel";
             this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
-            // Form1
+            // Form_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +123,7 @@
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.lb_pw);
             this.Controls.Add(this.lb_id);
-            this.Name = "Form1";
+            this.Name = "Form_login";
             this.Text = "Dorrent";
             this.ResumeLayout(false);
             this.PerformLayout();
