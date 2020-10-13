@@ -22,9 +22,13 @@ namespace Dorrent
             // 로그인 버튼
 
             this.Hide();
-            Form_main Form_main = new Form_main();
-            Form_main.Show();
-            Form_main.FormClosed += Form_login_open;
+            //Form_main Form_main = new Form_main();
+            //Form_main.Show();
+            //Form_main.FormClosed += Form_login_open;
+
+            Form5 Form5 = new Form5();
+            Form5.Show();
+            Form5.FormClosed += Form_login_open;
         }
 
         private void bt_join_Click(object sender, EventArgs e)
