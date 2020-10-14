@@ -1,6 +1,6 @@
 ﻿namespace Dorrent
 {
-    partial class Form5
+    partial class Form_main2
     {
         /// <summary>
         /// Required designer variable.
@@ -58,7 +58,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(0, 28);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(266, 422);
@@ -78,7 +80,9 @@
             // 
             // listView1
             // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
@@ -87,13 +91,13 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // Form5
+            // Form_main2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Form5";
+            this.Name = "Form_main2";
             this.Text = "FileExplorer";
             this.Load += new System.EventHandler(this.Form5_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

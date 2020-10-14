@@ -26,9 +26,9 @@ namespace Dorrent
             //Form_main.Show();
             //Form_main.FormClosed += Form_login_open;
 
-            Form5 Form5 = new Form5();
-            Form5.Show();
-            Form5.FormClosed += Form_login_open;
+            Form_main2 Form_main2 = new Form_main2();
+            Form_main2.Show();
+            Form_main2.FormClosed += Form_login_open;
         }
 
         private void bt_join_Click(object sender, EventArgs e)

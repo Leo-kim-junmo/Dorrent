@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Dorrent
 {
-    public partial class Form5 : Form
+    public partial class Form_main2 : Form
     {
-        public Form5()
+        public Form_main2()
         {
             InitializeComponent();
         }
