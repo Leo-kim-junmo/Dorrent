@@ -121,7 +121,7 @@ namespace Dorrent
                 DirectoryInfo dir = new DirectoryInfo(sFullPath);
 
                 int DirectCount = 0;
-                //하부 데렉토르 보여주기
+                //하부 데렉토리 보여주기
                 foreach (DirectoryInfo dirItem in dir.GetDirectories())
                 {
                     //하부 디렉토리가 존재할 경우 ListView에 추가
