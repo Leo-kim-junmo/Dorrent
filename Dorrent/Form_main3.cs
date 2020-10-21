@@ -114,7 +114,7 @@ namespace Dorrent
                 long size = response.ContentLength;
                 Stream datastream = response.GetResponseStream();
                 StreamReader sr = new StreamReader(datastream);
-                resule = sr.ReadToEnd();
+                result = sr.ReadToEnd();
                 sr.Close();
                 datastream.Close();
                 response.Close();
@@ -351,7 +351,7 @@ namespace Dorrent
                 reqFTP.UsePassive = usePassive;
                 reqFTP.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
-                Stream ftpStream = response.GetResponseStream.ftpStream();
+                Stream ftpStream = response.GetResponseStream();
 
                 ftpStream.Close();
                 response.Close();
@@ -399,6 +399,152 @@ namespace Dorrent
             ftpPassword = tb_pass.Text;
             ftpPort = tb_port.Text;
             usePassive = true;
+        }
+
+        private void Form_main3_Load(object sender, EventArgs e)
+        {
+            // System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+            
+            // 현재 로컬 컴퓨터에 존재하는 드라이브 정보 검색하여 트리노드에 추가
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+
+            foreach(DriveInfo dname in allDrives)
+            {
+                if(dname.DriveType==DriveType.Fixed)
+                {
+                    if(dname.Name==@"C:\")
+                    {
+                        TreeNode rootNode = new TreeNode(dname.Name);
+                        rootNode.ImageIndex = 0;
+                        rootNode.SelectedImageIndex = 0;
+                        tv_local.Nodes.Add(rootNode);
+                        Fill(rootNode);
+                    }
+                    else
+                    {
+                        TreeNode rootNode = new TreeNode(dname.Name);
+                        rootNode.ImageIndex = 1;
+                        rootNode.SelectedImageIndex = 1;
+                        tv_local.Nodes.Add(rootNode);
+                        Fill(rootNode);
+                    }
+                }
+            }
+            // 첫번째 노드 확장
+            tv_local.Nodes[0].Expand();
+
+            // ListView 보기 속성 설정
+            lv_local.View = View.Details;
+
+            // ListView Details 속성을 위한 헤더 추가
+            lv_local.Columns.Add("이름", lv_local.Width / 4, HorizontalAlignment.Left);
+            lv_local.Columns.Add("크기", lv_local.Width / 4, HorizontalAlignment.Left);
+            lv_local.Columns.Add("유형", lv_local.Width / 4, HorizontalAlignment.Left);
+            lv_local.Columns.Add("수정한 날짜", lv_local.Width / 4, HorizontalAlignment.Left);
+
+            // 행 단위 선택 가능
+            lv_local.FullRowSelect = true;
+        }
+
+        private void Fill(TreeNode dirNode)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(dirNode.FullPath);
+                // 드라이브의 하위 폴더 추가
+                foreach(DirectoryInfo dirItem in dir.GetDirectories())
+                {
+                    TreeNode newNode = new TreeNode(dirItem.Name);
+                    newNode.ImageIndex = 2;
+                    newNode.SelectedImageIndex = 2;
+                    dirNode.Nodes.Add(newNode);
+                    newNode.Nodes.Add("*");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("에러 발생 : " + ex.Message);
+            }
+        }
+
+        private void tv_local_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if(e.Node.Nodes[0].Text=="*")
+            {
+                e.Node.Nodes.Clear();
+                e.Node.ImageIndex = 3;
+                e.Node.SelectedImageIndex = 3;
+                Fill(e.Node);
+            }
+        }
+
+        private void tv_local_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            if(e.Node.Nodes[0].Text=="*")
+            {
+                e.Node.ImageIndex = 2;
+                e.Node.SelectedImageIndex = 2;
+            }
+        }
+
+        private void tv_local_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            SettingListView(e.Node.FullPath);
+        }
+
+        private void SettingListView(string sFullPath)
+        {
+            tb_local.Text = sFullPath;
+
+            try
+            {
+                // 기존의 파일 목록 제거
+                lv_local.Items.Clear();
+                DirectoryInfo dir = new DirectoryInfo(sFullPath);
+
+                int DirectCount = 0;
+                // 하부 디텍토리 보여주기
+                foreach(DirectoryInfo dirItem in dir.GetDirectories())
+                {
+                    // 하부 디렉토리가 존재할 경우 ListView에 추가
+                    // ListViewItem 객체를 생성
+                    ListViewItem lsvitem = new ListViewItem();
+
+                    // 생성된 ListViewItem 객체에 똑같은 이미지를 할당
+                    lsvitem.ImageIndex = 2;
+                    lsvitem.Text = dirItem.Name;
+
+                    // 아이템을 ListView(lv_local)에 추가
+                    lv_local.Items.Add(lsvitem);
+                    lv_local.Items[DirectCount].SubItems.Add(dirItem.GetFiles().Length.ToString() + " files");
+                    lv_local.Items[DirectCount].SubItems.Add("폴더");
+                    lv_local.Items[DirectCount].SubItems.Add(dirItem.CreationTime.ToString());
+                    DirectCount++;
+                }
+
+                // 디렉토리에 존재하는 파일목록 보여주기
+                FileInfo[] files = dir.GetFiles();
+                int Count = 0;
+                foreach(FileInfo fileinfo in files)
+                {
+                    lv_local.Items.Add(fileinfo.Name);
+                    lv_local.Items[Count].SubItems.Add(fileinfo.Length.ToString()+" kb");
+                    lv_local.Items[Count].SubItems.Add(fileinfo.Attributes.ToString());
+                    if (fileinfo.LastWriteTime!=null)
+                    {
+                        lv_local.Items[Count].SubItems.Add(fileinfo.LastWriteTime.ToString());
+                    }
+                    else
+                    {
+                        lv_local.Items[Count].SubItems.Add(fileinfo.CreationTime.ToString());
+                    }
+                    Count++;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("에러 발생 : " + ex.Message);
+            }
         }
     }
 }

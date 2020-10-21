@@ -39,16 +39,16 @@
             this.tb_host = new System.Windows.Forms.TextBox();
             this.lb_host = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.lb_local = new System.Windows.Forms.Label();
-            this.lb_server = new System.Windows.Forms.Label();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tb_local = new System.Windows.Forms.TextBox();
-            this.tb_server = new System.Windows.Forms.TextBox();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tv_local = new System.Windows.Forms.TreeView();
             this.lv_local = new System.Windows.Forms.ListView();
-            this.lv_server = new System.Windows.Forms.ListView();
+            this.lb_local = new System.Windows.Forms.Label();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.tv_server = new System.Windows.Forms.TreeView();
+            this.lv_server = new System.Windows.Forms.ListView();
+            this.tb_server = new System.Windows.Forms.TextBox();
+            this.lb_server = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -188,23 +188,12 @@
             this.splitContainer2.SplitterDistance = 390;
             this.splitContainer2.TabIndex = 0;
             // 
-            // lb_local
+            // tb_local
             // 
-            this.lb_local.AutoSize = true;
-            this.lb_local.Location = new System.Drawing.Point(5, 5);
-            this.lb_local.Name = "lb_local";
-            this.lb_local.Size = new System.Drawing.Size(65, 12);
-            this.lb_local.TabIndex = 0;
-            this.lb_local.Text = "로컬사이트";
-            // 
-            // lb_server
-            // 
-            this.lb_server.AutoSize = true;
-            this.lb_server.Location = new System.Drawing.Point(5, 5);
-            this.lb_server.Name = "lb_server";
-            this.lb_server.Size = new System.Drawing.Size(65, 12);
-            this.lb_server.TabIndex = 1;
-            this.lb_server.Text = "서버사이트";
+            this.tb_local.Location = new System.Drawing.Point(75, 1);
+            this.tb_local.Name = "tb_local";
+            this.tb_local.Size = new System.Drawing.Size(312, 21);
+            this.tb_local.TabIndex = 2;
             // 
             // splitContainer3
             // 
@@ -224,19 +213,35 @@
             this.splitContainer3.SplitterDistance = 274;
             this.splitContainer3.TabIndex = 1;
             // 
-            // tb_local
+            // tv_local
             // 
-            this.tb_local.Location = new System.Drawing.Point(75, 1);
-            this.tb_local.Name = "tb_local";
-            this.tb_local.Size = new System.Drawing.Size(312, 21);
-            this.tb_local.TabIndex = 2;
+            this.tv_local.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tv_local.Location = new System.Drawing.Point(0, 0);
+            this.tv_local.Name = "tv_local";
+            this.tv_local.Size = new System.Drawing.Size(390, 274);
+            this.tv_local.TabIndex = 0;
+            this.tv_local.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.tv_local_BeforeCollapse);
+            this.tv_local.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tv_local_BeforeExpand);
+            this.tv_local.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tv_local_NodeMouseClick);
             // 
-            // tb_server
+            // lv_local
             // 
-            this.tb_server.Location = new System.Drawing.Point(75, 1);
-            this.tb_server.Name = "tb_server";
-            this.tb_server.Size = new System.Drawing.Size(312, 21);
-            this.tb_server.TabIndex = 3;
+            this.lv_local.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lv_local.HideSelection = false;
+            this.lv_local.Location = new System.Drawing.Point(0, 0);
+            this.lv_local.Name = "lv_local";
+            this.lv_local.Size = new System.Drawing.Size(390, 415);
+            this.lv_local.TabIndex = 0;
+            this.lv_local.UseCompatibleStateImageBehavior = false;
+            // 
+            // lb_local
+            // 
+            this.lb_local.AutoSize = true;
+            this.lb_local.Location = new System.Drawing.Point(5, 5);
+            this.lb_local.Name = "lb_local";
+            this.lb_local.Size = new System.Drawing.Size(65, 12);
+            this.lb_local.TabIndex = 0;
+            this.lb_local.Text = "로컬사이트";
             // 
             // splitContainer4
             // 
@@ -256,23 +261,13 @@
             this.splitContainer4.SplitterDistance = 274;
             this.splitContainer4.TabIndex = 4;
             // 
-            // tv_local
+            // tv_server
             // 
-            this.tv_local.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tv_local.Location = new System.Drawing.Point(0, 0);
-            this.tv_local.Name = "tv_local";
-            this.tv_local.Size = new System.Drawing.Size(390, 274);
-            this.tv_local.TabIndex = 0;
-            // 
-            // lv_local
-            // 
-            this.lv_local.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv_local.HideSelection = false;
-            this.lv_local.Location = new System.Drawing.Point(0, 0);
-            this.lv_local.Name = "lv_local";
-            this.lv_local.Size = new System.Drawing.Size(390, 415);
-            this.lv_local.TabIndex = 0;
-            this.lv_local.UseCompatibleStateImageBehavior = false;
+            this.tv_server.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tv_server.Location = new System.Drawing.Point(0, 0);
+            this.tv_server.Name = "tv_server";
+            this.tv_server.Size = new System.Drawing.Size(390, 274);
+            this.tv_server.TabIndex = 0;
             // 
             // lv_server
             // 
@@ -284,13 +279,21 @@
             this.lv_server.TabIndex = 0;
             this.lv_server.UseCompatibleStateImageBehavior = false;
             // 
-            // tv_server
+            // tb_server
             // 
-            this.tv_server.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tv_server.Location = new System.Drawing.Point(0, 0);
-            this.tv_server.Name = "tv_server";
-            this.tv_server.Size = new System.Drawing.Size(390, 274);
-            this.tv_server.TabIndex = 0;
+            this.tb_server.Location = new System.Drawing.Point(75, 1);
+            this.tb_server.Name = "tb_server";
+            this.tb_server.Size = new System.Drawing.Size(312, 21);
+            this.tb_server.TabIndex = 3;
+            // 
+            // lb_server
+            // 
+            this.lb_server.AutoSize = true;
+            this.lb_server.Location = new System.Drawing.Point(5, 5);
+            this.lb_server.Name = "lb_server";
+            this.lb_server.Size = new System.Drawing.Size(65, 12);
+            this.lb_server.TabIndex = 1;
+            this.lb_server.Text = "서버사이트";
             // 
             // Form_main3
             // 
@@ -300,6 +303,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form_main3";
             this.Text = "Form_main3";
+            this.Load += new System.EventHandler(this.Form_main3_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

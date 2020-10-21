@@ -14,9 +14,6 @@ namespace Dorrent
         [STAThread]
         static void Main()
         {
-            string start = "ftp://"; // 다운 받을 주소
-            string end = "test.txt"; // 다운 받은 주소
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_login());

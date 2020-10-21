@@ -20,11 +20,11 @@ namespace Dorrent
 
         private void Form5_Load(object sender, EventArgs e)
         {
-            //현재 사용자 정보 표시
+            // 현재 사용자 정보 표시
             System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
             label1.Text = "현재 사용자  :" + identity.Name;
 
-            //현재 로컬 컴퓨터에 존재하는 드라이브 정보 검색하여 트리노드에 추가
+            // 현재 로컬 컴퓨터에 존재하는 드라이브 정보 검색하여 트리노드에 추가
             DriveInfo[] allDrives = DriveInfo.GetDrives();
 
             foreach (DriveInfo dname in allDrives)
@@ -50,19 +50,19 @@ namespace Dorrent
                 }
             }
 
-            //첫번째 노드 확장
+            // 첫번째 노드 확장
             treeView1.Nodes[0].Expand();
 
-            //ListView 보기 속성 설정
+            // ListView 보기 속성 설정
             listView1.View = View.Details;
 
-            //ListView Details 속성을 위한 헤더 추가
+            // ListView Details 속성을 위한 헤더 추가
             listView1.Columns.Add("이름", listView1.Width / 4, HorizontalAlignment.Left);
             listView1.Columns.Add("수정한 날짜", listView1.Width / 4, HorizontalAlignment.Left);
             listView1.Columns.Add("유형", listView1.Width / 4, HorizontalAlignment.Left);
             listView1.Columns.Add("크기", listView1.Width / 4, HorizontalAlignment.Left);
 
-            //행 단위 선택 가능
+            // 행 단위 선택 가능
             listView1.FullRowSelect = true;
         }
 
@@ -116,23 +116,23 @@ namespace Dorrent
         {
             try
             {
-                //기존의 파일 목록 제거
+                // 기존의 파일 목록 제거
                 listView1.Items.Clear();
                 DirectoryInfo dir = new DirectoryInfo(sFullPath);
 
                 int DirectCount = 0;
-                //하부 데렉토리 보여주기
+                // 하부 디렉토리 보여주기
                 foreach (DirectoryInfo dirItem in dir.GetDirectories())
                 {
-                    //하부 디렉토리가 존재할 경우 ListView에 추가
-                    //ListViewItem 객체를 생성
+                    // 하부 디렉토리가 존재할 경우 ListView에 추가
+                    // ListViewItem 객체를 생성
                     ListViewItem lsvitem = new ListViewItem();
 
-                    //생성된 ListViewItem 객체에 똑같은 이미지를 할당
+                    // 생성된 ListViewItem 객체에 똑같은 이미지를 할당
                     lsvitem.ImageIndex = 2;
                     lsvitem.Text = dirItem.Name;
 
-                    //아이템을 ListView(listView1)에 추가
+                    // 아이템을 ListView(listView1)에 추가
                     listView1.Items.Add(lsvitem);
 
                     listView1.Items[DirectCount].SubItems.Add(dirItem.CreationTime.ToString());
@@ -141,7 +141,7 @@ namespace Dorrent
                     DirectCount++;
                 }
 
-                //디렉토리에 존재하는 파일목록 보여주기
+                // 디렉토리에 존재하는 파일목록 보여주기
                 FileInfo[] files = dir.GetFiles();
                 int Count = 0;
                 foreach (FileInfo fileinfo in files)

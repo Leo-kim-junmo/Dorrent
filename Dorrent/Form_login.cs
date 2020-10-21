@@ -22,13 +22,29 @@ namespace Dorrent
             // 로그인 버튼
 
             this.Hide();
-            //Form_main Form_main = new Form_main();
-            //Form_main.Show();
-            //Form_main.FormClosed += Form_login_open;
 
-            Form_main2 Form_main2 = new Form_main2();
-            Form_main2.Show();
-            Form_main2.FormClosed += Form_login_open;
+            if(tb_id.Text=="1")
+            {
+                Form_main Form_main = new Form_main();
+                Form_main.Show();
+                Form_main.FormClosed += Form_login_open;
+            }
+            else if(tb_id.Text=="2")
+            {
+                Form_main2 Form_main2 = new Form_main2();
+                Form_main2.Show();
+                Form_main2.FormClosed += Form_login_open;
+            }
+            else if(tb_id.Text=="3")
+            {
+                Form_main3 Form_main3 = new Form_main3();
+                Form_main3.Show();
+                Form_main3.FormClosed += Form_login_open;
+            }
+            else
+            {
+                MessageBox.Show("없는 아이디 입니다.");
+            }
         }
 
         private void bt_join_Click(object sender, EventArgs e)
